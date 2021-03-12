@@ -20,7 +20,7 @@ public class ListPageBookCategoryServiceImpl implements ListPageBookCategoryServ
 	@Override
 	 public Page<BookCategory> findPage(String searchTerm, Pageable pageable) {
 		 
-		pageable.getSortOr( Sort.by(Sort.Direction.ASC, "title"));
+		pageable.getSortOr( Sort.by(Sort.Direction.ASC, "name"));
 //		 PageRequest pageRequest = PageRequest.of(
 //	                page,
 //	                size,
