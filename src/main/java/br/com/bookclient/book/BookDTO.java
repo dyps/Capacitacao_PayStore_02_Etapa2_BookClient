@@ -3,6 +3,7 @@ package br.com.bookclient.book;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -29,6 +30,8 @@ import lombok.Setter;
 public class BookDTO {
 
 	private Long id;
+	
+	private UUID livro_db;
 
 	@NotEmpty
 	private String title;
@@ -55,10 +58,10 @@ public class BookDTO {
 	public static BookDTO from(Book book) {
 		List<BookCategoryDTOGet> listaCat = new ArrayList<BookCategoryDTOGet>();
 		for (Long bookDTO : book.getBookCategories()) 
-			listaCat.add(BookCategoryDTOGet.builder().id( bookDTO ).build());
-
+			listaCat.add(BookCategoryDTOGet.builder().id(bookDTO).build());
 		return BookDTO.builder()
 				.id(book.getId())
+				.livro_db(book.getLivro_db())
 				.title(book.getTitle())
 				.isbn(book.getIsbn())
 				.author(book.getAuthor())

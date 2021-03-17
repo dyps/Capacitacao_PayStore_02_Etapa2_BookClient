@@ -49,7 +49,7 @@ public class BookDTOFromCategory {
 
 	public static BookDTOFromCategory from(Book book) {
 		return BookDTOFromCategory.builder()
-				.id(book.getId())
+//				.id(book.getId())
 				.title(book.getTitle())
 				.isbn(book.getIsbn())
 				.author(book.getAuthor())

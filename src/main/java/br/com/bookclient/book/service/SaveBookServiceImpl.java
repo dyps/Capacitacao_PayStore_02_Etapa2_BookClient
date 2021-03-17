@@ -1,11 +1,13 @@
 package br.com.bookclient.book.service;
 
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
 
 import br.com.bookclient.book.Book;
+import br.com.bookclient.book.BookDTO;
 import br.com.bookclient.book.BookRepository;
-import br.com.bookclient.bookcategory.service.GetBookCategoryService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -13,12 +15,13 @@ import lombok.RequiredArgsConstructor;
 public class SaveBookServiceImpl implements SaveBookService {
 
     private final BookRepository bookRepository;
-    private final GetBookCategoryService getCategoriaBookService;
+    private final GetCategoryFromBook getCategoryFromBook;
 
     @Override
     public void insert(Book book) {
-		for (Long bookCategory : book.getBookCategories())
-			getCategoriaBookService.find(bookCategory);
+    	getCategoryFromBook.buscarCategorias(BookDTO.from(book));
+    	
+		book.setLivro_db(UUID.randomUUID());
         bookRepository.save(book);
     }
 }

@@ -1,6 +1,7 @@
 package br.com.bookclient.book.v1;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -23,6 +24,7 @@ import br.com.bookclient.book.Book;
 import br.com.bookclient.book.BookDTO;
 import br.com.bookclient.book.BookDTOFromCategory;
 import br.com.bookclient.book.service.DeleteBookService;
+import br.com.bookclient.book.service.GetBookByUUIDService;
 import br.com.bookclient.book.service.GetBookService;
 import br.com.bookclient.book.service.ListBookService;
 import br.com.bookclient.book.service.ListPageBookService;
@@ -43,10 +45,17 @@ public class BookControllerV1 {
 	private final UpdateBookService updateBookService;
 	private final DeleteBookService deleteBookService;
 	private final ListPageBookService listPageBookService;
+	
+	private final GetBookByUUIDService getBookByUUIDService;
 
 	@GetMapping(value = "/{id}")
 	public BookDTO find(@PathVariable("id") Long id) {
 		return getBookService.find(id);
+	}
+	
+	@GetMapping(value = "/UUID/{uuid}")
+	public BookDTO findby(@PathVariable("uuid") UUID uuid) {
+		return getBookByUUIDService.find(uuid);
 	}
 
 	@GetMapping("/search")
