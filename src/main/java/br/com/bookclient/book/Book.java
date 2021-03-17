@@ -65,7 +65,6 @@ public class Book implements Serializable {
 		List<Long> listaCatLivro = new ArrayList<Long>();
 		for (BookCategoryDTOGet bookCategoryDTOGet : bookDTO.getBookCategories())
 			listaCatLivro.add(bookCategoryDTOGet.getId());
-		System.out.println(listaCatLivro);
 		return Book.builder()
 				.id(bookDTO.getId())
 				.livro_db(bookDTO.getLivro_db())

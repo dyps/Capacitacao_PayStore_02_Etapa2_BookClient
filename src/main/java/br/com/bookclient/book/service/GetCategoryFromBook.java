@@ -18,9 +18,7 @@ public class GetCategoryFromBook {
 	
 	public void buscarCategorias(BookDTO bookdto) {
 		List<BookCategoryDTOGet> lista = new ArrayList<BookCategoryDTOGet>();
-		System.out.println(bookdto.getBookCategories());
 		for (BookCategoryDTOGet bookCategoryDTOGet : bookdto.getBookCategories()) {
-			System.out.println(bookCategoryDTOGet);
 			lista.add(BookCategoryDTOGet.from( getCategoriaBookService.find(bookCategoryDTOGet.getId())));
 		}
 		bookdto.setBookCategories(lista);
